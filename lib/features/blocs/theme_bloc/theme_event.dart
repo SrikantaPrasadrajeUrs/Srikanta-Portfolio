@@ -8,9 +8,8 @@ class ThemeEvent extends Equatable{
 }
 
 class ThemeChangeEvent extends ThemeEvent{
-  final ThemeType themeType;
-  const ThemeChangeEvent(this.themeType);
+  const ThemeChangeEvent();
 
-  @override
-  List<Object?> get props => [themeType];
+  // @override
+  // List<Object?> get props => [];
 }

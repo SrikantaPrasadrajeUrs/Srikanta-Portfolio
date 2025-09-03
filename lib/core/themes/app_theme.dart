@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:srikanta_portfolio/core/themes/portfolio_colors.dart';
 
 class AppTheme{
   static final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    scaffoldBackgroundColor: Color.fromRGBO(248,247,241,1)
+    extensions: [PortFolioColors.light],
+    scaffoldBackgroundColor: PortFolioColors.light.scaffoldBgColor,
   );
 
   static final ThemeData darkTheme = ThemeData(
       brightness: Brightness.dark,
-      scaffoldBackgroundColor: Color.fromRGBO(41,45,59,1)
+      extensions: [PortFolioColors.dark],
+      scaffoldBackgroundColor: PortFolioColors.dark.scaffoldBgColor
   );
 
 }

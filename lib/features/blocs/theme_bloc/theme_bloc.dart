@@ -14,8 +14,10 @@ class ThemeBloc extends Bloc<ThemeEvent,ThemeState>{
   }
 
   void handleThemeChangeEvent(ThemeChangeEvent event, Emitter<ThemeState> emit){
-    emit(ThemeState(themeData: _mapThemeTypeToThemeData(themeType), themeType: themeType));
-    LocalStorage.setTheme(themeType);
+    print("hello");
+    final newTheme = state.themeType==ThemeType.bright?ThemeType.dark:ThemeType.bright;
+    emit(ThemeState(themeData: _mapThemeTypeToThemeData(newTheme), themeType: newTheme));
+    LocalStorage.setTheme(newTheme);
   }
 
   static ThemeData _mapThemeTypeToThemeData(ThemeType themeType){
