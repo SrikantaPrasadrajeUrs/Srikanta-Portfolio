@@ -25,13 +25,13 @@ class PortFolioColors extends ThemeExtension<PortFolioColors>{
 
   static const light = PortFolioColors(
       scaffoldBgColor: Color.fromRGBO(248,247,241,1),
-      reverseColor: Colors.black,
-      shadow: Colors.black
+      reverseColor: Colors.black54,
+      shadow: Colors.black45
   );
   static const dark = PortFolioColors(
       scaffoldBgColor: Color.fromRGBO(41,45,59,1),
       reverseColor: Color.fromRGBO(183,183,183,1),
-      shadow: Colors.white
+      shadow: Colors.white70
   );
 
 }

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:srikanta_portfolio/core/themes/portfolio_colors.dart';
-import 'package:srikanta_portfolio/features/blocs/theme_bloc/theme_bloc.dart';
 import 'package:srikanta_portfolio/widgets/theme_builder.dart';
 
 class MainView extends StatefulWidget {
