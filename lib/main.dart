@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:srikanta_portfolio/blocs/theme_bloc/theme_bloc.dart';
 import 'package:srikanta_portfolio/core/services/local_storage.dart';
-import 'package:srikanta_portfolio/features/blocs/theme_bloc/theme_bloc.dart';
-import 'package:srikanta_portfolio/features/main_view.dart';
+import 'package:srikanta_portfolio/features/home/view/main_view.dart';
 
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();

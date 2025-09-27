@@ -1,34 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:srikanta_portfolio/blocs/theme_bloc/theme_bloc.dart';
 import 'package:srikanta_portfolio/core/constants/constants.dart';
 import 'package:srikanta_portfolio/core/utils/utils.dart';
-import '../features/blocs/theme_bloc/theme_bloc.dart';
 
-class ThemeBuilder extends StatefulWidget {
-  const ThemeBuilder({super.key});
+class LightDarkMode extends StatefulWidget {
+  const LightDarkMode({super.key});
 
   @override
-  State<ThemeBuilder> createState() => _ThemeBuilderState();
+  State<LightDarkMode> createState() => _LightDarkModeState();
 }
 
-class _ThemeBuilderState extends State<ThemeBuilder> with TickerProviderStateMixin {
+class _LightDarkModeState extends State<LightDarkMode> with TickerProviderStateMixin {
 
   late AnimationController _animationController;
   late AnimationController _widgetAnimationController;
   late Animation<Offset> _imageSlideAnimation;
   late Animation<Offset> _widgetSlideAnimation;
-
-
+  
   @override
   void initState() {
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
     );
     _widgetAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
     );
     _widgetSlideAnimation =  Tween<Offset>(
       begin: const Offset(0, 0),
@@ -78,10 +77,10 @@ class _ThemeBuilderState extends State<ThemeBuilder> with TickerProviderStateMix
               builder: (context, state) {
                 final currentImagePath = state.themeType==ThemeType.dark?AssetPaths.sun:AssetPaths.moon;
                 return Container(
-                  padding: EdgeInsets.only(left: 6, right: 6, top: 30, bottom: 10),
+                  padding: const EdgeInsets.only(left: 6, right: 6, top: 30, bottom: 10),
                   decoration: BoxDecoration(
                     color: getCurrentTheme(context).reverseColor,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30),
                     ),
