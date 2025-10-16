@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:srikanta_portfolio/core/themes/app_theme.dart';
 import 'package:srikanta_portfolio/features/home/view/light_dark_mode.dart';
 
 class MainView extends StatefulWidget {
@@ -38,22 +38,15 @@ class _MainViewState extends State<MainView> {
 
   Widget buildGreetingWidget() {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
           "Hello",
-          style: GoogleFonts.kantumruyPro(
-            fontSize: 150,
-            fontWeight: FontWeight.w500,
-            letterSpacing: .2,
-          ),
+          style: AppTheme.typography(context).kantumruyPro.displayLarge,
         ),
         Text(
           getGreeting(),
-          style: GoogleFonts.poppins(
-            fontSize: 108,
-            fontWeight: FontWeight.w200,
-            letterSpacing: .2,
-          ),
+          style: AppTheme.typography(context).kantumruyPro.displayLarge,
         ),
       ],
     );

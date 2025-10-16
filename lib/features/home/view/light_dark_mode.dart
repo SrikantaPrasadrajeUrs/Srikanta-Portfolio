@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:srikanta_portfolio/blocs/theme_bloc/theme_bloc.dart';
 import 'package:srikanta_portfolio/core/constants/constants.dart';
-import 'package:srikanta_portfolio/core/utils/utils.dart';
+import 'package:srikanta_portfolio/core/themes/app_theme.dart';
 
 class LightDarkMode extends StatefulWidget {
   const LightDarkMode({super.key});
@@ -79,14 +79,14 @@ class _LightDarkModeState extends State<LightDarkMode> with TickerProviderStateM
                 return Container(
                   padding: const EdgeInsets.only(left: 6, right: 6, top: 30, bottom: 10),
                   decoration: BoxDecoration(
-                    color: getCurrentTheme(context).reverseColor,
+                    color: AppTheme.color(context).reverseColor,
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30),
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: getCurrentTheme(context).shadow,
+                        color: AppTheme.color(context).shadow,
                         blurRadius: 10,
                         offset: Offset(0, 0),
                       ),
