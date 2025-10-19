@@ -4,9 +4,11 @@ import 'package:srikanta_portfolio/core/constants/constants.dart';
 import 'package:srikanta_portfolio/core/themes/extensions/portfolio_colors.dart';
 
 class PortfolioTypography extends ThemeExtension<PortfolioTypography> {
-  /// TextTheme based on **Poppins** font family
+
+  /// TextTheme based on [Poppins] font family
   final TextTheme poppins;
-  /// TextTheme based on **KantumruyPro** font family
+
+  /// TextTheme based on [KantumruyPro] font family
   final TextTheme kantumruyPro;
 
   /// Create [PortfolioTypography] with provided [TextTheme]
