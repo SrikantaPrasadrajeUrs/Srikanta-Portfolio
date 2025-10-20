@@ -58,8 +58,11 @@ class _LightDarkModeState extends State<LightDarkMode> with TickerProviderStateM
   }
 
   void hopWidget(bool isHovered){
-    if(isHovered) _widgetAnimationController.forward();
-    else _widgetAnimationController.reverse();
+    if(isHovered) {
+      _widgetAnimationController.forward();
+    } else {
+      _widgetAnimationController.reverse();
+    }
   }
 
   @override

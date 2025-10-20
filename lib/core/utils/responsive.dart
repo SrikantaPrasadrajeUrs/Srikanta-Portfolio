@@ -21,3 +21,22 @@ class Responsive {
   static bool isDesktop(BuildContext context) =>
       getDeviceType(context) == DeviceType.desktop;
 }
+
+const double kBaseScreenWidth = 2048;
+const kMaxFontScale = 1.3;
+const kMinFontScale = 0.3;
+
+
+/// Scales a [TextStyle]'s fontSize based on current screen width or provided constraints.
+///
+/// - Uses the *shortest side* of the screen for consistent scaling.
+/// - Clamps scaling between [kMinFontScale] and [kMaxFontScale].
+/// - Works both with [BuildContext] or [BoxConstraints].
+TextStyle scaleTextValue(TextStyle textStyle, {BuildContext? context, BoxConstraints? constraints}){
+  double? originalFS = textStyle.fontSize;
+  if(originalFS==null) return textStyle;
+  double? currentWidth = constraints!=null?constraints.maxWidth:context!=null?MediaQuery.of(context).size.shortestSide:null;
+  if(currentWidth==null) return textStyle;
+  double scale = (currentWidth/kBaseScreenWidth).clamp(kMinFontScale, kMaxFontScale);
+  return textStyle.copyWith(fontSize: originalFS*scale);
+}

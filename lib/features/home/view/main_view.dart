@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:srikanta_portfolio/features/home/view/greeting_widget.dart';
 import 'package:srikanta_portfolio/features/home/view/light_dark_mode.dart';
+import 'package:srikanta_portfolio/features/home/view/portfolio_selector.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -21,6 +22,10 @@ class _MainViewState extends State<MainView> {
           children: [
             GreetingWidget(),
             Align(alignment: Alignment.topRight, child: LightDarkMode()),
+            Align(
+              alignment: Alignment.center,
+              child: PortfolioSelector(),
+            )
           ],
         ),
       ),

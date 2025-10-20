@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart' show Color, Colors, TextTheme, ThemeExtension;
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/material.dart' show Color, Colors, ThemeExtension;
 
 class PortFolioColor extends ThemeExtension<PortFolioColor> {
   final Color scaffoldBgColor;
