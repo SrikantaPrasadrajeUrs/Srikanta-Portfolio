@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:srikanta_portfolio/features/home/view/greeting_widget.dart';
-import 'package:srikanta_portfolio/features/home/view/light_dark_mode.dart';
-import 'package:srikanta_portfolio/features/home/view/portfolio_selector.dart';
+import 'package:srikanta_portfolio/features/home/widgets/greeting_widget.dart';
+import 'package:srikanta_portfolio/features/home/widgets/light_dark_mode.dart';
+import 'package:srikanta_portfolio/features/home/widgets/portfolio_selector.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});

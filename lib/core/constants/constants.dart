@@ -11,6 +11,6 @@ enum FontFamily{
 
 class AssetPaths{
   AssetPaths._();
-  static const moon = 'images/sun.png';
-  static const sun = 'images/moon_cool.png';
+  static const moon = 'images/moon_cool.png';
+  static const sun = 'images/sun.png';
 }
