@@ -23,7 +23,7 @@ class App extends StatelessWidget {
       builder: (context, themeState){
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: "Portfolio",
+          title: 'Portfolio',
           theme: themeState.themeData,
           home: MainView(),
         );
