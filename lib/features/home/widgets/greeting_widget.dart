@@ -3,15 +3,16 @@ import 'package:srikanta_portfolio/core/utils/responsive.dart';
 import '../../../core/themes/app_theme.dart';
 
 class GreetingWidget extends StatefulWidget {
-  const GreetingWidget({super.key});
+  final VoidCallback? onAnimationEnd;
+  const GreetingWidget({super.key, this.onAnimationEnd});
 
   @override
   State<GreetingWidget> createState() => _GreetingWidgetState();
 }
 
-class _GreetingWidgetState extends State<GreetingWidget>  with TickerProviderStateMixin{
-
-  late final AnimationController controller;
+class _GreetingWidgetState extends State<GreetingWidget>
+    with TickerProviderStateMixin {
+  late final AnimationController movementController;
   late final Animation<Offset> fromTop;
   late final Animation<Offset> fromBottom;
   late final Animation<double> opacityAnimation;
@@ -23,30 +24,58 @@ class _GreetingWidgetState extends State<GreetingWidget>  with TickerProviderSta
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 1500));
-    opacityController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1500));
+    movementController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    );
+    opacityController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    );
 
-    fromTop = Tween<Offset>(begin: const Offset(0, -2), end: Offset.zero).animate(CurvedAnimation(parent: controller, curve: Curves.decelerate));
-    fromBottom = Tween<Offset>(begin: const Offset(0, 2), end: Offset.zero).animate(CurvedAnimation(parent: controller, curve: const Interval(.4, 1, curve:Curves.decelerate)));
-    opacityAnimation = Tween<double>(begin: .2, end: 1).animate(CurvedAnimation(parent: controller, curve: Curves.easeInBack));
+    fromTop = Tween<Offset>(
+      begin: const Offset(0, -2),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(parent: movementController, curve: Curves.decelerate),
+    );
+    fromBottom = Tween<Offset>(
+      begin: const Offset(0, 2),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: movementController,
+        curve: const Interval(.4, 1, curve: Curves.decelerate),
+      ),
+    );
+    opacityAnimation = Tween<double>(begin: .2, end: 1).animate(
+      CurvedAnimation(parent: movementController, curve: Curves.easeInBack),
+    );
 
-    opacityAnimation2 = Tween<double>(begin: 1, end: 0).animate(CurvedAnimation(parent: opacityController, curve: Curves.easeInBack));
+    opacityAnimation2 = Tween<double>(begin: 1, end: 0).animate(
+      CurvedAnimation(parent: opacityController, curve: Curves.easeInBack),
+    );
 
     greetings = getGreeting();
-    WidgetsBinding.instance.addPostFrameCallback((_){
-      controller.addStatusListener(onAnimationComplete);
-      controller.forward();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      movementController.addStatusListener(onMovementAnimationComplete);
+      opacityController.addStatusListener(onAnimationComplete);
+      movementController.forward();
     });
   }
 
   void onAnimationComplete(AnimationStatus status) {
-    if(!status.isCompleted) return;
+    if (status.isCompleted) widget.onAnimationEnd?.call();
+  }
+
+  void onMovementAnimationComplete(AnimationStatus status) {
+    if (!status.isCompleted) return;
     opacityController.forward();
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    movementController.dispose();
     opacityController.dispose();
     super.dispose();
   }
@@ -62,10 +91,13 @@ class _GreetingWidgetState extends State<GreetingWidget>  with TickerProviderSta
               opacity: opacityAnimation2,
               child: Text(
                 'Hello',
-                style: scaleTextValue(AppTheme.typography(context).kantumruyPro.displayLarge!, constraints: constraints),
+                style: scaleTextValue(
+                  AppTheme.typography(context).kantumruyPro.displayLarge!,
+                  constraints: constraints,
+                ),
               ),
             ),
-            SizedBox(width: 30,),
+            SizedBox(width: 30),
             FadeTransition(
               opacity: opacityAnimation2,
               child: FadeTransition(
@@ -78,13 +110,19 @@ class _GreetingWidgetState extends State<GreetingWidget>  with TickerProviderSta
                               position: part.direction,
                               child: Text(
                                 part.text,
-                                style: scaleTextValue(AppTheme.typography(
-                                  context,
-                                ).kantumruyPro.displayLarge!.copyWith(
-                                  fontSize: 110,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppTheme.color(context).lightReverseColor,
-                                ), constraints: constraints),
+                                style: scaleTextValue(
+                                  AppTheme.typography(
+                                    context,
+                                  ).kantumruyPro.displayLarge!.copyWith(
+                                    fontSize: 110,
+                                    fontWeight: FontWeight.bold,
+                                    color:
+                                        AppTheme.color(
+                                          context,
+                                        ).lightReverseColor,
+                                  ),
+                                  constraints: constraints,
+                                ),
                               ),
                             ),
                           )
@@ -94,7 +132,7 @@ class _GreetingWidgetState extends State<GreetingWidget>  with TickerProviderSta
             ),
           ],
         );
-      }
+      },
     );
   }
 
@@ -112,7 +150,7 @@ class _GreetingWidgetState extends State<GreetingWidget>  with TickerProviderSta
   }
 }
 
-class Greeting{
+class Greeting {
   final String text;
   final Animation<Offset> direction;
   const Greeting({required this.text, required this.direction});
