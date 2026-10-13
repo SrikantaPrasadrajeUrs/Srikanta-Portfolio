@@ -5,19 +5,16 @@ enum DeviceType { mobile, tablet, desktop }
 class Responsive {
   static DeviceType getDeviceType(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
-    if (width < 600) {
+    if (width < 700) {
       return DeviceType.mobile;
-    } else if (width < 1200) {
-      return DeviceType.tablet;
     } else {
+      // Either Desktop or Tablet's or ipad's in landscape
       return DeviceType.desktop;
     }
   }
 
   static bool isMobile(BuildContext context) =>
       getDeviceType(context) == DeviceType.mobile;
-  static bool isTablet(BuildContext context) =>
-      getDeviceType(context) == DeviceType.tablet;
   static bool isDesktop(BuildContext context) =>
       getDeviceType(context) == DeviceType.desktop;
 }
